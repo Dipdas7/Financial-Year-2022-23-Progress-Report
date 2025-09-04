@@ -1,151 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bharuch Kishan Agrofeed Producer Company - Financial Year 2022-23</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2022-23 Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 font-sans">
-    <div class="container mx-auto px-4 py-8">
-        <header class="mb-8">
-            <h1 class="text-3xl font-bold text-center text-green-800">Bharuch Kishan Agrofeed Producer Company Limited</h1>
-            <h2 class="text-2xl text-center text-green-700">Financial Year 2022-23 Progress Report</h2>
-        </header>
+<body class="bg-gray-50 flex flex-col items-center p-4 space-y-6 min-h-screen">
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <!-- Summary Cards -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-green-700 mb-4">Total Sales</h3>
-                <p class="text-3xl font-bold text-green-600">₹1,576,077</p>
-                <p class="text-sm text-gray-500 mt-2">September to March</p>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-green-700 mb-4">Total Profit</h3>
-                <p class="text-3xl font-bold text-green-600">₹105,072</p>
-                <p class="text-sm text-gray-500 mt-2">September to March</p>
-            </div>
-            
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-green-700 mb-4">Total Turnover</h3>
-                <p class="text-3xl font-bold text-green-600">₹1,576,077</p>
-                <p class="text-sm text-gray-500 mt-2">September to March</p>
-            </div>
-        </div>
+  <!-- Heading -->
+  <header class="text-center">
+    <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-wide">
+      BHARUCH KISAN AGROFED PRODUCER CO. LTD.
+    </h1>
+    <p class="text-gray-600 mt-1">Year: 2022 - 23</p>
+  </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <!-- Monthly Sales Chart -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-green-700 mb-4">Monthly Sales</h3>
-                <canvas id="salesChart" class="w-full h-64"></canvas>
-            </div>
-            
-            <!-- Product Distribution Chart -->
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-lg font-semibold text-green-700 mb-4">Product Distribution</h3>
-                <canvas id="productChart" class="w-full h-64"></canvas>
-            </div>
-        </div>
-    </div>
+  <!-- Chart -->
+  <div class="w-full max-w-3xl bg-white p-4 rounded-2xl shadow">
+    <canvas id="chart2022"></canvas>
+  </div>
 
-    <script>
-        // Initialize Charts
-        function initializeCharts() {
-            // Monthly Sales Chart
-            const salesCtx = document.getElementById('salesChart').getContext('2d');
-            const months = ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
-            const salesData = [57000, 270750, 354540, 378243, 226195, 455721, 266000];
-            
-            new Chart(salesCtx, {
-                type: 'bar',
-                data: {
-                    labels: months,
-                    datasets: [{
-                        label: 'Monthly Sales (₹)',
-                        data: salesData,
-                        backgroundColor: 'rgba(5, 150, 105, 0.7)',
-                        borderColor: 'rgba(5, 150, 105, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    return '₹' + value.toLocaleString();
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return 'Sales: ₹' + context.raw.toLocaleString();
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            
-            // Product Distribution Chart
-            const productCtx = document.getElementById('productChart').getContext('2d');
-            const productLabels = ['Eucalyptus Plants', 'Biocol', 'Eucalyptus Harvest', 'Agro Waste'];
-            const productData = [
-                1576077,  // Total of Eucalyptus Plants
-                282954,   // Total of Biocol
-                4679139,  // Total of Eucalyptus Harvest
-                23106     // Total of Agro Waste
-            ];
-            
-            new Chart(productCtx, {
-                type: 'pie',
-                data: {
-                    labels: productLabels,
-                    datasets: [{
-                        data: productData,
-                        backgroundColor: [
-                            'rgba(5, 150, 105, 0.7)',
-                            'rgba(16, 185, 129, 0.7)',
-                            'rgba(22, 163, 74, 0.7)',
-                            'rgba(34, 197, 94, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(5, 150, 105, 1)',
-                            'rgba(16, 185, 129, 1)',
-                            'rgba(22, 163, 74, 1)',
-                            'rgba(34, 197, 94, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    const label = context.label || '';
-                                    const value = context.raw || 0;
-                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                    const percentage = Math.round((value / total) * 100);
-                                    return `${label}: ₹${value.toLocaleString()} (${percentage}%)`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', initializeCharts);
-    </script>
+  <script>
+    const ctx2022 = document.getElementById('chart2022').getContext('2d');
+    new Chart(ctx2022, {
+      type: 'line',
+      data: {
+        labels: ["September","October","November","December","January","February","March"],
+        datasets: [
+          {
+            label: "Total Work Amount",
+            data: [57000,270750,354540,378243,1079799,455721,3941874],
+            borderColor: "#2563eb",
+            backgroundColor: "rgba(37,99,235,0.2)",
+            fill: false,
+            tension: 0.3
+          },
+          {
+            label: "Profit",
+            data: [3000,14250,18660,19998,21092,4150,54017],
+            borderColor: "#16a34a",
+            backgroundColor: "rgba(22,163,74,0.2)",
+            fill: false,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  </script>
 </body>
 </html>
